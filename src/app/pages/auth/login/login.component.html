@@ -1,0 +1,26 @@
+
+<div class="btn-wrappers" nz-flex [nzJustify]="'center'" [nzAlign]="'center'" style="height: 100%;">
+  <div>
+    {{str}}
+  </div>
+  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()" style="width: 25rem;">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="请输入账号">
+        <nz-input-group nzPrefixIcon="user">
+          <input type="text" nz-input formControlName="username" placeholder="账号" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="请输入密码">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="password" placeholder="账号" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">登录</button>
+  </form>
+</div>
+<style>
+</style>
+
