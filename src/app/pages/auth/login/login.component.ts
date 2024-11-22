@@ -5,10 +5,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import {NzFlexDirective, NzFlexModule} from 'ng-zorro-antd/flex';
-import {HttpClient} from '@angular/common/http';
-import {ApiResponseEntity} from '../../../entity/ApiResponseEntity';
-import {NzMessageService} from 'ng-zorro-antd/message';
+import {NzFlexDirective} from 'ng-zorro-antd/flex';
 import {AuthService} from '../../../service/AuthService';
 import {Router} from '@angular/router';
 
@@ -25,6 +22,7 @@ export class LoginComponent {
 
   submitForm(): void {
     if (this.validateForm.valid) {
+      // 登录成功后跳转到后台管理页面
       this.authService.login(this.validateForm.value);
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
@@ -41,6 +39,8 @@ export class LoginComponent {
       username: this.fb.control('', [Validators.required]),
       password: this.fb.control('', [Validators.required])
     });
+
+    // 如果token存在且已经登录，则跳转到后台管理页面
     if (this.authService.getToken() != null) {
       this.authService.isLogin().then(isLoginType=>{
         if (isLoginType){

@@ -6,35 +6,97 @@ import {HttpClient} from '@angular/common/http';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {ApiService} from './ApiService';
 import {Router} from '@angular/router';
+import {MenuEntity} from '../entity/MenuEntity';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private _routers:RouterItemEntity[]=[
+  private _menus:MenuEntity[]=[
     {
-      id:"1",
-      name:"welcome",
-      routerLink:"/admin/welcome"
+      level: 1,
+      title: 'Mail Group',
+      icon: 'mail',
+      open: false,
+      selected: false,
+      disabled: false,
+      children: [
+        {
+          level: 2,
+          title: 'Group 1',
+          icon: 'bars',
+          open: false,
+          selected: false,
+          disabled: false,
+          children: [
+            {
+              level: 3,
+              title: 'Option 1',
+              selected: false,
+              disabled: false,
+              routerLink:'/'
+            },
+            {
+              level: 3,
+              title: 'Option 2',
+              selected: false,
+              disabled: true,
+              routerLink:'/'
+            }
+          ]
+        },
+        {
+          level: 2,
+          title: 'Group 2',
+          icon: 'bars',
+          selected: false,
+          disabled: false,
+          routerLink:'/admin/welcome'
+        },
+        {
+          level: 2,
+          title: 'Group 3',
+          icon: 'bars',
+          selected: false,
+          disabled: false,
+          routerLink:'/'
+        }
+      ]
     },
     {
-      id:"2",
-      name:"test",
-      routerLink:"/admin/test"
-    },
-    {
-      id:"3",
-      name:"login",
-      routerLink:"/login"
+      level: 1,
+      title: 'Team Group',
+      icon: 'team',
+      open: false,
+      selected: false,
+      disabled: false,
+      children: [
+        {
+          level: 2,
+          title: 'User 1',
+          icon: 'user',
+          selected: false,
+          disabled: false,
+          routerLink:'/'
+        },
+        {
+          level: 2,
+          title: 'User 2',
+          icon: 'user',
+          selected: false,
+          disabled: false,
+          routerLink:'/'
+        }
+      ]
     }
-  ]
+  ];
 
   /**
    * 获取要展示的路由列表
    */
-  routers(): RouterItemEntity[] {
-    return this._routers;
+  menus(): MenuEntity[] {
+    return this._menus;
   }
 
   /**
